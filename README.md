@@ -3,4 +3,4 @@
 
 IP-адрес 158.160.49.94
 
-Домен http://api.daria-lgtn-movies.nomoredomains.xyz/
+Домен https://api.daria-lgtn-movies.nomoredomains.xyz/
