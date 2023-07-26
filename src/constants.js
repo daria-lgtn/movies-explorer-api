@@ -8,4 +8,8 @@ module.exports.CODE_DUPLICATE = 11000;
 
 const { JWT_KEY = '7m5xMMNptM2C4mhTVKuuC8MxLUiMLnI' } = process.env;
 module.exports.JWT_KEY = JWT_KEY;
+
+const { MONGO_DB = 'localhost:27017/bitfilmsdbdev' } = process.env;
+module.exports.MONGO_DB = MONGO_DB;
+
 module.exports.URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=]{1,256}/;
