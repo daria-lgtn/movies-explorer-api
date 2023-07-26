@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const { NotFoundError } = require('../errors/NotFound');
+const { ErrorConflict } = require('../errors/ErrorConflict');
 const { ErrorValidation } = require('../errors/ErrorValidation');
 
 module.exports.getMe = (req, res, next) => {
@@ -33,7 +34,9 @@ module.exports.updateMe = (req, res, next) => {
       }
     })
     .catch((err) => {
-      if (err.name === 'ValidationError') {
+      if (err.code === CODE_DUPLICATE) {
+        next(new ErrorConflict('Пользователь с таким email-ом уже существует'));
+      } else if (err.name === 'ValidationError') {
         next(new ErrorValidation());
       } else {
         next(err);
