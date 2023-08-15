@@ -31,13 +31,13 @@ module.exports.deleteById = (req, res, next) => {
   const { movieId } = req.params;
   const userId = req.user._id;
 
-  Movie.findById({ _id: movieId })
+  Movie.findOne({ movieId })
     .then((movie) => {
       if (movie) {
         if (!movie.owner.equals(userId)) {
           throw new ErrorAccess();
         } else {
-          return Movie.findOneAndDelete({ _id: movieId });
+          return Movie.findOneAndDelete({ movieId });
         }
       } else {
         throw new NotFoundError();

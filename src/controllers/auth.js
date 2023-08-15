@@ -29,7 +29,11 @@ module.exports.signup = (req, res, next) => {
       password: hash,
     }))
     .then((user) => User.findOne({ _id: user._id }))
-    .then((data) => res.send({ data }))
+    .then((user) => {
+      const token = jwt.sign({ _id: user._id }, JWT_KEY);
+
+      res.send({ token });
+    })
     .catch((err) => {
       if (err.code === CODE_DUPLICATE) {
         next(new ErrorConflict('Пользователь с таким email-ом уже существует'));
